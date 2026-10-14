@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cevichería Los Puertos - Sabor del Mar & Elegancia</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0B2545',
+                            900: '#06172E',
+                            950: '#030E1E'
+                        },
+                        ocean: {
+                            500: '#00A896',
+                            600: '#028090',
+                            700: '#134074'
+                        },
+                        sand: '#F4F4F9',
+                        gold: '#D4AF37'
+                    },
+                    fontFamily: {
+                        title: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .nautical-border {
+            border: 2px solid rgba(2, 128, 144, 0.3);
+            box-shadow: 0 0 15px rgba(0, 168, 150, 0.1);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(6, 23, 46, 0.95) 0%, rgba(19, 64, 116, 0.85) 100%);
+        }
+        .glass-panel {
+            background: rgba(11, 37, 69, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-navy-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-ocean-600/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo & Title -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-ocean-500 shadow-md flex items-center justify-center bg-navy-900">
+                    <img id="navLogoImg" src="input_file_0.png" alt="Logo Cevicheria Los Puertos" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.onerror=null; this.src='image_75d421.jpg';">
+                </div>
+                <div>
+                    <span class="font-title text-lg sm:text-xl font-bold tracking-wider text-white block">CEVICHERÍA</span>
+                    <span class="font-title text-xs tracking-widest text-ocean-500 block uppercase">Los Puertos</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#catalogo" class="hover:text-ocean-500 transition duration-200">Catálogo</a>
+                <a href="#pedido" class="hover:text-ocean-500 transition duration-200">Hacer Pedido</a>
+                <a href="#inventario" class="hover:text-ocean-500 transition duration-200">Inventario Admin</a>
+                <a href="#contacto" class="hover:text-ocean-500 transition duration-200">Contacto</a>
+                <button onclick="openLogoModal()" class="text-xs bg-navy-800 hover:bg-ocean-700 text-teal-300 px-3 py-1.5 rounded-lg border border-ocean-500/40 transition">
+                    <i class="fa-solid fa-image mr-1"></i> Cambiar Logo
+                </button>
+            </nav>
+
+            <!-- Cart Trigger Button -->
+            <a href="#pedido" class="relative bg-ocean-600 hover:bg-ocean-500 text-white px-4 py-2.5 rounded-full flex items-center space-x-2 transition duration-200 shadow-lg shadow-ocean-600/20">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span class="hidden sm:inline font-semibold text-sm">Mi Pedido</span>
+                <span id="cartBadge" class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full hidden">0</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section / Portada -->
+    <section class="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-navy-900 border-b border-ocean-600/20">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#00A896_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <!-- Elementos decorativos náuticos de fondo -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-ocean-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-ocean-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 relative z-10">
+            <!-- Hero Text -->
+            <div class="flex-1 text-center md:text-left space-y-6">
+                <div class="inline-flex items-center space-x-2 bg-ocean-700/50 border border-ocean-500/30 px-3 py-1 rounded-full text-ocean-500 text-xs tracking-widest uppercase shadow-inner">
+                    <i class="fa-solid fa-compass animate-spin-slow"></i>
+                    <span>Tradición & Frescura Marina</span>
+                </div>
+                <h1 class="font-title text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-md">
+                    El Verdadero Sabor <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-ocean-500 to-teal-200">De Los Puertos</span>
+                </h1>
+                <p class="text-slate-300 text-base sm:text-lg max-w-xl font-light leading-relaxed">
+                    Disfruta de nuestros ceviches preparados con la mejor selección de mariscos frescos e ingredientes autóctonos. Calidad premium directo a tu mesa.
+                </p>
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+                    <a href="#catalogo" class="bg-gradient-to-r from-ocean-600 to-ocean-500 hover:from-ocean-500 hover:to-teal-400 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-ocean-600/30 transition duration-300 flex items-center space-x-2">
+                        <span>Ver Catálogo</span>
+                        <i class="fa-solid fa-utensils text-xs"></i>
+                    </a>
+                    <button onclick="openLogoModal()" class="bg-navy-800/80 hover:bg-navy-800 text-teal-300 border border-ocean-500/40 px-6 py-3.5 rounded-xl transition duration-300 flex items-center space-x-2">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span>Personalizar Logo</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Logo Portada Destacado -->
+            <div class="flex-1 flex justify-center">
+                <div class="relative w-72 h-72 sm:w-88 sm:h-88 rounded-full p-4 bg-gradient-to-tr from-ocean-600 via-teal-500 to-navy-800 shadow-2xl shadow-ocean-500/30 flex items-center justify-center group">
+                    <!-- Brillo exterior -->
+                    <div class="absolute -inset-1 bg-gradient-to-r from-teal-400 to-ocean-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+                    
+                    <!-- Marco interno con fondo transparente/oscuro -->
+                    <div class="relative w-full h-full rounded-full overflow-hidden bg-navy-950/90 border-4 border-navy-800/80 flex items-center justify-center p-2 shadow-inner">
+                        <img id="mainHeroLogo" src="input_file_0.png" alt="Logo Portada Cevichería Los Puertos" class="w-full h-full object-contain filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)] transition duration-500 transform group-hover:scale-105" onerror="this.onerror=null; this.src='image_75d421.jpg';">
+                        
+                        <!-- Overlay interactivo para cambiar logo -->
+                        <button onclick="openLogoModal()" class="absolute inset-0 bg-navy-950/80 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-teal-300 font-semibold text-xs p-4 text-center cursor-pointer">
+                            <i class="fa-solid fa-camera text-3xl mb-2 text-teal-400"></i>
+                            <span>Haga clic para cambiar o actualizar el logo de la portada</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalogo de Productos -->
+    <section id="catalogo" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="font-title text-3xl sm:text-4xl font-bold text-white mb-3">Nuestra Carta Especializada</h2>
+            <p class="text-slate-400 text-sm sm:text-base">Selecciona tus ceviches favoritos e indícanos la cantidad para generar tu pedido automáticamente por WhatsApp.</p>
+            <div class="w-24 h-1 bg-gradient-to-r from-ocean-600 to-ocean-500 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <!-- Dynamic Product Grid -->
+        <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product Cards render dynamically JS -->
+        </div>
+
+        <!-- Add Custom Product Form (Ordered Extension) -->
+        <div class="mt-12 glass-panel p-6 rounded-2xl border border-ocean-600/30 max-w-3xl mx-auto">
+            <h3 class="font-title text-lg font-bold text-teal-300 mb-4 flex items-center space-x-2">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span>Agregar Nuevo Producto al Catálogo</span>
+            </h3>
+            <form id="newProductForm" onsubmit="handleAddNewProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Nombre del Producto</label>
+                    <input type="text" id="newProdName" required placeholder="Ej: Ceviche Especial De Pulpo" class="w-full bg-navy-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-ocean-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Precio ($ COP)</label>
+                    <input type="number" id="newProdPrice" required placeholder="30000" class="w-full bg-navy-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-ocean-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Stock Disponible</label>
+                    <input type="number" id="newProdStock" required placeholder="25" class="w-full bg-navy-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-ocean-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Cargar Imagen (Opcional)</label>
+                    <input type="file" id="newProdImage" accept="image/*" class="w-full text-xs text-slate-400 file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:bg-ocean-700 file:text-white hover:file:bg-ocean-600">
+                </div>
+                <div class="sm:col-span-2 pt-2">
+                    <button type="submit" class="w-full bg-ocean-600 hover:bg-ocean-500 text-white font-semibold py-2.5 rounded-xl transition duration-200 text-sm">
+                        Registrar Producto en Sistema
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Línea 2: Pedido por WhatsApp -->
+    <section id="pedido" class="py-16 bg-navy-900/60 border-y border-ocean-600/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-ocean-500 text-xs font-bold uppercase tracking-widest">Atención Inmediata</span>
+                <h2 class="font-title text-3xl sm:text-4xl font-bold text-white mt-1">Finalizar Pedido vía WhatsApp</h2>
+                <p class="text-slate-300 text-sm mt-2">Diligencia tus datos de envío. La orden se enviará formateada al <strong>+57 3118210771</strong>.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Customer Details Form -->
+                <div class="lg:col-span-7 glass-panel p-6 sm:p-8 rounded-2xl">
+                    <h3 class="text-xl font-bold text-white mb-6 border-b border-slate-700/60 pb-3 flex items-center space-x-2">
+                        <i class="fa-solid fa-user-check text-ocean-500"></i>
+                        <span>Datos del Cliente</span>
+                    </h3>
+                    
+                    <form id="orderForm" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Nombre Completo *</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500"><i class="fa-solid fa-user"></i></span>
+                                    <input type="text" id="custName" required placeholder="Ej: Juan Pérez" class="w-full bg-navy-950 border border-slate-700 rounded-xl pl-9 pr-3 py-2.5 text-sm text-white focus:outline-none focus:border-ocean-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Número Celular *</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500"><i class="fa-solid fa-phone"></i></span>
+                                    <input type="tel" id="custPhone" required placeholder="Ej: 3001234567" class="w-full bg-navy-950 border border-slate-700 rounded-xl pl-9 pr-3 py-2.5 text-sm text-white focus:outline-none focus:border-ocean-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Correo Electrónico *</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500"><i class="fa-solid fa-envelope"></i></span>
+                                <input type="email" id="custEmail" required placeholder="ejemplo@correo.com" class="w-full bg-navy-950 border border-slate-700 rounded-xl pl-9 pr-3 py-2.5 text-sm text-white focus:outline-none focus:border-ocean-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Dirección de Residencia *</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500"><i class="fa-solid fa-location-dot"></i></span>
+                                <input type="text" id="custAddress" required placeholder="Calle / Carrera, Número, Barrio, Ciudad" class="w-full bg-navy-950 border border-slate-700 rounded-xl pl-9 pr-3 py-2.5 text-sm text-white focus:outline-none focus:border-ocean-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Notas Opcionales</label>
+                            <textarea id="custNotes" rows="2" placeholder="Ej: Sin picante, salsa adicional..." class="w-full bg-navy-950 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-ocean-500"></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Order Summary Panel -->
+                <div class="lg:col-span-5 glass-panel p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-6 border-b border-slate-700/60 pb-3 flex items-center justify-between">
+                            <span class="flex items-center space-x-2">
+                                <i class="fa-solid fa-receipt text-ocean-500"></i>
+                                <span>Resumen del Pedido</span>
+                            </span>
+                            <button onclick="clearCart()" class="text-xs text-red-400 hover:underline">Vaciar</button>
+                        </h3>
+
+                        <div id="cartItemsContainer" class="space-y-3 max-h-64 overflow-y-auto pr-1">
+                            <!-- Rendered dynamically -->
+                            <p class="text-slate-400 text-sm italic text-center py-6">No has agregado productos al carrito todavía.</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-700/60 mt-6 space-y-4">
+                        <div class="flex justify-between text-sm text-slate-300">
+                            <span>Unidades Totales:</span>
+                            <span id="summaryTotalUnits" class="font-bold text-white">0</span>
+                        </div>
+                        <div class="flex justify-between text-lg font-bold text-white">
+                            <span>Total a Pagar:</span>
+                            <span id="summaryTotalPrice" class="text-teal-400 font-title">$0</span>
+                        </div>
+
+                        <button onclick="sendWhatsAppOrder()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-emerald-600/30 transition duration-300 flex items-center justify-center space-x-3 text-base">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
+                            <span>Enviar Pedido a WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Línea 3: Revisión de Inventarios (Uso Administrativo) -->
+    <section id="inventario" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-ocean-600/40">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-700">
+                <div>
+                    <span class="bg-ocean-700 text-teal-300 text-xs px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">Módulo Administrativo</span>
+                    <h2 class="font-title text-2xl sm:text-3xl font-bold text-white mt-1">Gestión & Control de Inventario</h2>
+                    <p class="text-slate-400 text-xs sm:text-sm">Base de datos automatizada para verificar y actualizar el stock en tiempo real.</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="resetDefaultStock()" class="bg-navy-800 hover:bg-navy-700 border border-slate-600 text-slate-300 text-xs px-3 py-2 rounded-lg transition">
+                        <i class="fa-solid fa-rotate-left mr-1"></i> Restablecer Stock
+                    </button>
+                    <button onclick="exportInventoryJSON()" class="bg-ocean-600 hover:bg-ocean-500 text-white text-xs px-3 py-2 rounded-lg transition font-semibold">
+                        <i class="fa-solid fa-download mr-1"></i> Exportar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Inventory Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-slate-300">
+                    <thead class="bg-navy-950 text-slate-400 uppercase text-xs font-semibold">
+                        <tr>
+                            <th class="p-3">ID</th>
+                            <th class="p-3">Producto</th>
+                            <th class="p-3">Precio COP</th>
+                            <th class="p-3">Stock Actual</th>
+                            <th class="p-3">Estado</th>
+                            <th class="p-3 text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventoryTableBody" class="divide-y divide-slate-800">
+                        <!-- JS Dynamic Content -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Línea 4: Sección de Contactos -->
+    <section id="contacto" class="py-16 bg-navy-900 border-t border-ocean-600/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="font-title text-3xl font-bold text-white">Canales de Atención</h2>
+                <p class="text-slate-400 text-sm mt-1">Estamos listos para atenderte por nuestros diferentes medios.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Phone -->
+                <a href="https://wa.me/573118210771" target="_blank" rel="noopener noreferrer" class="glass-panel p-6 rounded-2xl hover:border-ocean-500 transition duration-300 text-center group">
+                    <div class="w-14 h-14 bg-ocean-600/20 text-ocean-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-phone text-2xl"></i>
+                    </div>
+                    <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Celular / WhatsApp</h3>
+                    <p class="text-lg font-bold text-white mt-1">311 821 0771</p>
+                    <p class="text-xs text-teal-400 mt-1">Pedidos Directos</p>
+                </a>
+
+                <!-- Email -->
+                <a href="mailto:Cevicherialospuertos@gmail.com" class="glass-panel p-6 rounded-2xl hover:border-ocean-500 transition duration-300 text-center group">
+                    <div class="w-14 h-14 bg-ocean-600/20 text-ocean-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-envelope text-2xl"></i>
+                    </div>
+                    <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Correo Electrónico</h3>
+                    <p class="text-sm font-bold text-white mt-2 break-all">Cevicherialospuertos@gmail.com</p>
+                </a>
+
+                <!-- Facebook -->
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="glass-panel p-6 rounded-2xl hover:border-ocean-500 transition duration-300 text-center group">
+                    <div class="w-14 h-14 bg-ocean-600/20 text-ocean-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                        <i class="fa-brands fa-facebook-f text-2xl"></i>
+                    </div>
+                    <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Facebook</h3>
+                    <p class="text-base font-bold text-white mt-1">Cevicheria los puertos</p>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="glass-panel p-6 rounded-2xl hover:border-ocean-500 transition duration-300 text-center group">
+                    <div class="w-14 h-14 bg-ocean-600/20 text-ocean-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                        <i class="fa-brands fa-instagram text-2xl"></i>
+                    </div>
+                    <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Instagram</h3>
+                    <p class="text-base font-bold text-white mt-1">Cevicheria los puertos</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 py-8 border-t border-slate-800 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© <span id="currentYear"></span> Cevichería Los Puertos - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Gestor de Logo -->
+    <div id="logoModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-navy-900 border border-ocean-600/60 p-6 sm:p-8 rounded-2xl max-w-md w-full mx-4 shadow-2xl relative">
+            <button onclick="closeLogoModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-ocean-600/20 text-teal-400 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                    <i class="fa-solid fa-image"></i>
+                </div>
+                <h3 class="font-title text-xl font-bold text-white">Actualizar Logo Principal</h3>
+                <p class="text-slate-400 text-xs mt-1">Sube una nueva imagen o pega una URL para modificar el logo de la portada.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Opción A: Archivo local -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Cargar Archivo desde tu Dispositivo</label>
+                    <input type="file" id="logoFileInput" accept="image/*" class="w-full text-xs text-slate-400 file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:bg-ocean-700 file:text-white hover:file:bg-ocean-600 cursor-pointer">
+                </div>
+
+                <div class="flex items-center my-2">
+                    <div class="flex-grow border-t border-slate-700"></div>
+                    <span class="px-2 text-xs text-slate-500 uppercase">o</span>
+                    <div class="flex-grow border-t border-slate-700"></div>
+                </div>
+
+                <!-- Opción B: Pegar URL -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Ingresar Enlace URL de Imagen</label>
+                    <input type="url" id="logoUrlInput" placeholder="https://ejemplo.com/mi-logo.png" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-ocean-500">
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="pt-3 space-y-2">
+                    <button onclick="applyNewLogo()" class="w-full bg-ocean-600 hover:bg-ocean-500 text-white font-bold py-2.5 rounded-xl transition text-xs shadow-lg shadow-ocean-600/30">
+                        Guardar Cambios
+                    </button>
+                    <button onclick="resetDefaultLogo()" class="w-full bg-navy-800 hover:bg-slate-800 text-slate-300 border border-slate-700 font-medium py-2 rounded-xl transition text-xs">
+                        Restablecer a Logo Predeterminado
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Dialog Modal -->
+    <div id="customModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-navy-900 border border-ocean-600/50 p-6 rounded-2xl max-w-sm w-full mx-4 shadow-2xl text-center">
+            <div id="modalIcon" class="text-3xl mb-3 text-ocean-500"></div>
+            <h4 id="modalTitle" class="text-lg font-bold text-white mb-2"></h4>
+            <p id="modalMsg" class="text-sm text-slate-300 mb-5"></p>
+            <button onclick="closeModal()" class="bg-ocean-600 hover:bg-ocean-500 text-white font-semibold px-5 py-2 rounded-xl text-sm w-full">
+                Entendido
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const DEFAULT_LOGO = 'input_file_0.png';
+
+        // Initial required products list
+        const initialProducts = [
+            {
+                id: 1,
+                name: "CEVICHE DE CAMARON COPA PEQUEÑA",
+                price: 22000,
+                stock: 50,
+                image: ""
+            },
+            {
+                id: 2,
+                name: "CEVICHE DE CAMARON COPA GRANDE",
+                price: 27000,
+                stock: 40,
+                image: ""
+            },
+            {
+                id: 3,
+                name: "CEVICHE MIXTO COPA PEQUEÑA",
+                price: 22000,
+                stock: 50,
+                image: ""
+            },
+            {
+                id: 4,
+                name: "CEVICHE MIXTO COPA GRANDE",
+                price: 27000,
+                stock: 40,
+                image: ""
+            },
+            {
+                id: 5,
+                name: "CANOA TROPICAL",
+                price: 37000,
+                stock: 30,
+                image: ""
+            },
+            {
+                id: 6,
+                name: "CEVICHE DE ATUN ENLATADO ZENU",
+                price: 22000,
+                stock: 10,
+                image: ""
+            }
+        ];
+
+        let products = JSON.parse(localStorage.getItem('puertos_products')) || initialProducts;
+        let cart = JSON.parse(localStorage.getItem('puertos_cart')) || {};
+        let currentLogo = localStorage.getItem('puertos_logo') || DEFAULT_LOGO;
+
+        document.getElementById('currentYear').innerText = new Date().getFullYear();
+
+        // Update Logo in HTML Elements
+        function updateLogoDisplay() {
+            const heroLogo = document.getElementById('mainHeroLogo');
+            const navLogo = document.getElementById('navLogoImg');
+            
+            if (heroLogo) heroLogo.src = currentLogo;
+            if (navLogo) navLogo.src = currentLogo;
+        }
+
+        function openLogoModal() {
+            document.getElementById('logoModal').classList.remove('hidden');
+        }
+
+        function closeLogoModal() {
+            document.getElementById('logoModal').classList.add('hidden');
+            document.getElementById('logoFileInput').value = '';
+            document.getElementById('logoUrlInput').value = '';
+        }
+
+        function applyNewLogo() {
+            const fileInput = document.getElementById('logoFileInput');
+            const urlInput = document.getElementById('logoUrlInput').value.trim();
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentLogo = e.target.result;
+                    localStorage.setItem('puertos_logo', currentLogo);
+                    updateLogoDisplay();
+                    closeLogoModal();
+                    showAlert('Logo Actualizado', 'El nuevo logo se ha guardado correctamente.');
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else if (urlInput !== '') {
+                currentLogo = urlInput;
+                localStorage.setItem('puertos_logo', currentLogo);
+                updateLogoDisplay();
+                closeLogoModal();
+                showAlert('Logo Actualizado', 'La URL del nuevo logo se ha guardado correctamente.');
+            } else {
+                showAlert('Atención', 'Por favor selecciona un archivo de imagen o ingresa una URL válida.');
+            }
+        }
+
+        function resetDefaultLogo() {
+            currentLogo = DEFAULT_LOGO;
+            localStorage.setItem('puertos_logo', DEFAULT_LOGO);
+            updateLogoDisplay();
+            closeLogoModal();
+            showAlert('Logo Restablecido', 'Se ha vuelto a configurar el logo predeterminado.');
+        }
+
+        // Format currency helper
+        function formatCOP(amount) {
+            return '$' + new Intl.NumberFormat('es-CO').format(amount);
+        }
+
+        // Modal alert replacement
+        function showAlert(title, msg, iconClass = 'fa-solid fa-circle-info') {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMsg').innerText = msg;
+            document.getElementById('modalIcon').innerHTML = `<i class="${iconClass}"></i>`;
+            document.getElementById('customModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('customModal').classList.add('hidden');
+        }
+
+        // Save states
+        function saveData() {
+            localStorage.setItem('puertos_products', JSON.stringify(products));
+            localStorage.setItem('puertos_cart', JSON.stringify(cart));
+        }
+
+        // Render Product Cards
+        function renderProducts() {
+            const container = document.getElementById('productsGrid');
+            container.innerHTML = '';
+
+            products.forEach(p => {
+                const imgPlaceholder = p.image ? p.image : `https://placehold.co/600x400/0b2545/00a896?text=${encodeURIComponent(p.name)}`;
+                
+                const card = document.createElement('div');
+                card.className = "glass-panel rounded-2xl overflow-hidden border border-ocean-600/30 flex flex-col justify-between hover:border-ocean-500 transition duration-300 shadow-lg";
+                
+                card.innerHTML = `
+                    <div>
+                        <!-- Image Container with Dynamic Upload Trigger -->
+                        <div class="relative h-48 bg-navy-950 overflow-hidden group">
+                            <img src="${imgPlaceholder}" alt="${p.name}" id="img-display-${p.id}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <label class="absolute inset-0 bg-navy-950/70 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-xs text-teal-300 cursor-pointer p-2 text-center font-medium">
+                                <i class="fa-solid fa-camera text-2xl mb-1"></i>
+                                <span>Cargar / Cambiar Imagen</span>
+                                <input type="file" accept="image/*" class="hidden" onchange="uploadProductImage(event, ${p.id})">
+                            </label>
+                            <div class="absolute top-3 right-3 bg-navy-950/80 backdrop-blur-md px-2.5 py-1 rounded-full text-xs font-semibold text-teal-300 border border-ocean-500/30">
+                                Stock: <span id="stock-tag-${p.id}">${p.stock}</span> unids
+                            </div>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="p-5">
+                            <h3 class="font-title text-base font-bold text-white mb-2 leading-tight">${p.name}</h3>
+                            <div class="flex items-baseline justify-between mt-3">
+                                <span class="text-2xl font-bold text-teal-400">${formatCOP(p.price)}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Actions -->
+                    <div class="p-5 pt-0">
+                        <button onclick="addToCart(${p.id})" ${p.stock <= 0 ? 'disabled' : ''} class="w-full ${p.stock <= 0 ? 'bg-slate-700 cursor-not-allowed' : 'bg-ocean-600 hover:bg-ocean-500 shadow-md shadow-ocean-600/20'} text-white font-semibold py-2.5 px-4 rounded-xl transition duration-200 flex items-center justify-center space-x-2 text-sm">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>${p.stock <= 0 ? 'Agotado' : 'Añadir al Pedido'}</span>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            renderCart();
+            renderInventoryTable();
+        }
+
+        // Upload custom image for product card
+        function uploadProductImage(event, productId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const prod = products.find(p => p.id === productId);
+                    if (prod) {
+                        prod.image = e.target.result;
+                        saveData();
+                        renderProducts();
+                        showAlert('Imagen Cargada', `La imagen para "${prod.name}" se actualizó correctamente.`);
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Cart Actions
+        function addToCart(productId) {
+            const prod = products.find(p => p.id === productId);
+            if (!prod) return;
+
+            const currentQtyInCart = cart[productId] || 0;
+
+            if (currentQtyInCart >= prod.stock) {
+                showAlert('Límite de Stock', `No puedes agregar más unidades. El stock máximo disponible es ${prod.stock}.`, 'fa-solid fa-triangle-exclamation text-amber-400');
+                return;
+            }
+
+            cart[productId] = currentQtyInCart + 1;
+            saveData();
+            renderCart();
+        }
+
+        function updateCartQty(productId, change) {
+            if (!cart[productId]) return;
+            const prod = products.find(p => p.id === productId);
+            const newQty = cart[productId] + change;
+
+            if (newQty <= 0) {
+                delete cart[productId];
+            } else if (newQty > prod.stock) {
+                showAlert('Stock Máximo', `Solo hay ${prod.stock} unidades disponibles de este producto.`);
+                return;
+            } else {
+                cart[productId] = newQty;
+            }
+
+            saveData();
+            renderCart();
+        }
+
+        function clearCart() {
+            cart = {};
+            saveData();
+            renderCart();
+        }
+
+        // Render Cart Summary
+        function renderCart() {
+            const container = document.getElementById('cartItemsContainer');
+            const badge = document.getElementById('cartBadge');
+            container.innerHTML = '';
+
+            let totalUnits = 0;
+            let totalPrice = 0;
+            const keys = Object.keys(cart);
+
+            if (keys.length === 0) {
+                container.innerHTML = `<p class="text-slate-400 text-sm italic text-center py-6">No has agregado productos al carrito todavía.</p>`;
+                badge.classList.add('hidden');
+            } else {
+                badge.classList.remove('hidden');
+                keys.forEach(idStr => {
+                    const id = parseInt(idStr);
+                    const prod = products.find(p => p.id === id);
+                    if (prod) {
+                        const qty = cart[id];
+                        const subtotal = prod.price * qty;
+                        totalUnits += qty;
+                        totalPrice += subtotal;
+
+                        const itemEl = document.createElement('div');
+                        itemEl.className = "bg-navy-950/80 p-3 rounded-xl border border-slate-800 flex items-center justify-between gap-3";
+                        itemEl.innerHTML = `
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-xs font-semibold text-white truncate">${prod.name}</h4>
+                                <div class="text-xs text-teal-400 font-bold">${formatCOP(prod.price)} x ${qty} = ${formatCOP(subtotal)}</div>
+                            </div>
+                            <div class="flex items-center space-x-1.5 bg-navy-900 px-2 py-1 rounded-lg border border-slate-700">
+                                <button onclick="updateCartQty(${id}, -1)" class="text-slate-400 hover:text-white px-1 text-xs font-bold">-</button>
+                                <span class="text-xs font-bold text-white px-1">${qty}</span>
+                                <button onclick="updateCartQty(${id}, 1)" class="text-slate-400 hover:text-white px-1 text-xs font-bold">+</button>
+                            </div>
+                        `;
+                        container.appendChild(itemEl);
+                    }
+                });
+            }
+
+            badge.innerText = totalUnits;
+            document.getElementById('summaryTotalUnits').innerText = totalUnits;
+            document.getElementById('summaryTotalPrice').innerText = formatCOP(totalPrice);
+        }
+
+        // WhatsApp Order Dispatch
+        function sendWhatsAppOrder() {
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const email = document.getElementById('custEmail').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const notes = document.getElementById('custNotes').value.trim();
+
+            if (!name || !phone || !email || !address) {
+                showAlert('Datos Incompletos', 'Por favor diligencia todos los campos obligatorios del cliente (*).', 'fa-solid fa-circle-exclamation text-amber-400');
+                return;
+            }
+
+            const cartKeys = Object.keys(cart);
+            if (cartKeys.length === 0) {
+                showAlert('Carrito Vacío', 'Por favor selecciona al menos un producto del catálogo.', 'fa-solid fa-basket-shopping text-amber-400');
+                return;
+            }
+
+            let orderText = `🚢 *NUEVO PEDIDO - CEVICHERÍA LOS PUERTOS* 🚢\n\n`;
+            orderText += `👤 *DATOS DEL CLIENTE:*\n`;
+            orderText += `• *Nombre:* ${name}\n`;
+            orderText += `• *Teléfono:* ${phone}\n`;
+            orderText += `• *Correo:* ${email}\n`;
+            orderText += `• *Dirección:* ${address}\n`;
+            if (notes) orderText += `• *Notas:* ${notes}\n`;
+            
+            orderText += `\n🛒 *DETALLE DEL PEDIDO:*\n`;
+
+            let totalUnits = 0;
+            let totalPrice = 0;
+
+            cartKeys.forEach(idStr => {
+                const id = parseInt(idStr);
+                const prod = products.find(p => p.id === id);
+                if (prod) {
+                    const qty = cart[id];
+                    const subtotal = prod.price * qty;
+                    totalUnits += qty;
+                    totalPrice += subtotal;
+
+                    // Deduct stock upon order dispatch
+                    prod.stock = Math.max(0, prod.stock - qty);
+
+                    orderText += `• ${prod.name}\n  Cantidad: ${qty} | Precio Unit: ${formatCOP(prod.price)} | Subtotal: ${formatCOP(subtotal)}\n`;
+                }
+            });
+
+            orderText += `\n📊 *RESUMEN FINAL:*\n`;
+            orderText += `• *Total Unidades Pedidas:* ${totalUnits}\n`;
+            orderText += `• *TOTAL A PAGAR:* ${formatCOP(totalPrice)}\n\n`;
+            orderText += `¡Quedo atento a la confirmación de mi pedido!`;
+
+            saveData();
+            renderProducts();
+
+            const waTarget = "573118210771";
+            const encodedUrl = `https://wa.me/${waTarget}?text=${encodeURIComponent(orderText)}`;
+            window.open(encodedUrl, '_blank');
+        }
+
+        // Add Custom Product Dynamically
+        function handleAddNewProduct(e) {
+            e.preventDefault();
+            const name = document.getElementById('newProdName').value.trim();
+            const price = parseFloat(document.getElementById('newProdPrice').value);
+            const stock = parseInt(document.getElementById('newProdStock').value);
+            const fileInput = document.getElementById('newProdImage');
+
+            if (!name || isNaN(price) || isNaN(stock)) {
+                showAlert('Error', 'Por favor ingresa datos válidos para el producto.');
+                return;
+            }
+
+            const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+
+            const newProduct = {
+                id: newId,
+                name: name.toUpperCase(),
+                price: price,
+                stock: stock,
+                image: ""
+            };
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    newProduct.image = evt.target.result;
+                    products.push(newProduct);
+                    saveData();
+                    renderProducts();
+                    document.getElementById('newProductForm').reset();
+                    showAlert('Producto Agregado', `Se incorporó "${name}" correctamente al catálogo.`);
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                products.push(newProduct);
+                saveData();
+                renderProducts();
+                document.getElementById('newProductForm').reset();
+                showAlert('Producto Agregado', `Se incorporó "${name}" correctamente al catálogo.`);
+            }
+        }
+
+        // Render Admin Inventory Table
+        function renderInventoryTable() {
+            const tbody = document.getElementById('inventoryTableBody');
+            tbody.innerHTML = '';
+
+            products.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-navy-900/50 transition";
+
+                let statusBadge = `<span class="bg-emerald-900/60 text-emerald-400 text-xs px-2 py-0.5 rounded-md font-semibold">Disponible</span>`;
+                if (p.stock <= 0) {
+                    statusBadge = `<span class="bg-red-900/60 text-red-400 text-xs px-2 py-0.5 rounded-md font-semibold">Agotado</span>`;
+                } else if (p.stock < 15) {
+                    statusBadge = `<span class="bg-amber-900/60 text-amber-400 text-xs px-2 py-0.5 rounded-md font-semibold">Bajo Stock</span>`;
+                }
+
+                tr.innerHTML = `
+                    <td class="p-3 font-mono text-xs text-slate-500">#${p.id}</td>
+                    <td class="p-3 font-semibold text-white">${p.name}</td>
+                    <td class="p-3 text-teal-400 font-medium">${formatCOP(p.price)}</td>
+                    <td class="p-3">
+                        <input type="number" value="${p.stock}" min="0" onchange="adminUpdateStock(${p.id}, this.value)" class="w-20 bg-navy-950 border border-slate-700 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-ocean-500">
+                    </td>
+                    <td class="p-3">${statusBadge}</td>
+                    <td class="p-3 text-center">
+                        <button onclick="adminDeleteProduct(${p.id})" class="text-red-400 hover:text-red-300 p-1" title="Eliminar del catálogo">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function adminUpdateStock(id, newStock) {
+            const prod = products.find(p => p.id === id);
+            if (prod) {
+                prod.stock = Math.max(0, parseInt(newStock) || 0);
+                saveData();
+                renderProducts();
+            }
+        }
+
+        function adminDeleteProduct(id) {
+            if (confirm("¿Está seguro de eliminar este producto del inventario?")) {
+                products = products.filter(p => p.id !== id);
+                delete cart[id];
+                saveData();
+                renderProducts();
+            }
+        }
+
+        function resetDefaultStock() {
+            if (confirm("¿Desea restablecer el inventario inicial por defecto?")) {
+                products = JSON.parse(JSON.stringify(initialProducts));
+                cart = {};
+                saveData();
+                renderProducts();
+            }
+        }
+
+        function exportInventoryJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(products, null, 2));
+            const dlAnchor = document.createElement('a');
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", "inventario_cevicheria_los_puertos.json");
+            document.body.appendChild(dlAnchor);
+            dlAnchor.click();
+            dlAnchor.remove();
+        }
+
+        // Initialize Page
+        window.onload = function() {
+            updateLogoDisplay();
+            renderProducts();
+        };
+    </script>
+</body>
+</html>
